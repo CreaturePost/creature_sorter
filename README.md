@@ -28,7 +28,7 @@ Clone or copy this repo into ComfyUI's `custom_nodes` folder, then restart Comfy
 
 ```bash
 cd ComfyUI/custom_nodes
-git clone <this-repo-url> workflow_output_sorter
+git clone https://github.com/CreaturePost/creature_sorter workflow_output_sorter
 ```
 
 There are no dependencies beyond ComfyUI itself. The extension registers no nodes. It only adds a prompt handler and a frontend script.
