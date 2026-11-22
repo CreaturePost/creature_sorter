@@ -16,9 +16,9 @@ output/portraits/studio-v2/261122/ComfyUI_00001_.png
 
 ## Status
 
-Tested end to end on ComfyUI `master` with `comfyui-frontend-package` 1.59.11 (headless CPU run, `EmptyImage` → `SaveImage`, queued from the real UI in Chrome). Files landed in `output/<workflow_name>/<YYMMDD>/`, including nested workflow folders and the `unsaved/` fallback.
+Tested on ComfyUI `master` with `comfyui-frontend-package` 1.59.11 (headless CPU run, `EmptyImage` → `SaveImage`, queued from the real UI in Chrome). The API path was also verified on Windows 11 with ComfyUI portable: a workflow submitted with `extra_data.workflow_name` saved under the nested workflow/date folders, and an unnamed workflow used the `unsaved/` fallback. The Windows smoke-test image was confirmed under the configured `--output-directory`.
 
-Not tested: ComfyUI Desktop, Comfy Cloud, Windows, or other frontend versions. See [Known risks](#known-risks).
+Not tested: ComfyUI Desktop, Comfy Cloud, or the browser-side workflow-name hook on Windows and other frontend versions. See [Known risks](#known-risks).
 
 ## Installation
 
@@ -64,7 +64,7 @@ API clients can skip the frontend and send the name directly:
 
 - **Silent failure on the server.** ComfyUI only logs exceptions raised by prompt handlers. If the handler fails, the prompt is left unchanged and files land in the default output folder. Check the console for `creature_sorter failed`.
 - **Fragile frontend hook.** Wrapping `api.queuePrompt` isn't a documented extension point and could break on a future frontend. The name is read from `app.extensionManager.workflow.activeWorkflow.path` (with the leading `workflows/` removed), falling back to `fullFilename` then `filename`. If outputs always land in `unsaved/`, check in the browser console that `activeWorkflow` exists on your frontend version.
-- **Output location.** Files go under ComfyUI's output directory, which is `--output-directory` if set, otherwise `ComfyUI/output`. If ComfyUI runs on another machine or in a container, the files are on that machine, not yours.
+- **Output location.** This extension only adds relative workflow/date folders to each `filename_prefix`; it does not select or override the base output directory. Files go under ComfyUI's output directory, which is `--output-directory` if set, otherwise `ComfyUI/output`. If ComfyUI runs on another machine or in a container, the files are on that machine, not yours. On Windows, ComfyUI may report the nested subfolder with backslashes.
 
 ## Project layout
 
