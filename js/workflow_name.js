@@ -20,7 +20,7 @@ function currentWorkflowName() {
 }
 
 app.registerExtension({
-  name: "workflow_output_sorter",
+  name: "creature_sorter",
   async setup() {
     const original = api.queuePrompt.bind(api);
     api.queuePrompt = async function (number, data, options) {
@@ -30,7 +30,7 @@ app.registerExtension({
           data.workflow.extra = { ...(data.workflow.extra ?? {}), workflow_name: name };
         }
       } catch (e) {
-        console.warn("workflow_output_sorter:", e);
+        console.warn("creature_sorter:", e);
       }
       return original(number, data, options);
     };

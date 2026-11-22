@@ -1,4 +1,4 @@
-"""workflow_output_sorter
+"""creature_sorter
 
 Rewrites every Save node's `filename_prefix` at queue time so outputs land in
 
@@ -25,7 +25,7 @@ import re
 
 from server import PromptServer
 
-log = logging.getLogger("workflow_output_sorter")
+log = logging.getLogger("creature_sorter")
 
 WEB_DIRECTORY = "./js"
 NODE_CLASS_MAPPINGS = {}
@@ -64,7 +64,7 @@ def on_prompt(json_data):
             if isinstance(prefix, str) and not prefix.startswith(folder + "/"):
                 inputs["filename_prefix"] = f"{folder}/{prefix}"
     except Exception:
-        log.exception("workflow_output_sorter failed; prompt left unchanged")
+        log.exception("creature_sorter failed; prompt left unchanged")
     return json_data
 
 

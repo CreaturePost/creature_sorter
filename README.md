@@ -1,4 +1,4 @@
-# creature_sorter (workflow_output_sorter)
+# creature_sorter
 
 A small [ComfyUI](https://github.com/comfyanonymous/ComfyUI) custom extension that sorts generated outputs into folders named after the workflow that produced them.
 
@@ -28,7 +28,7 @@ Clone or copy this repo into ComfyUI's `custom_nodes` folder, then restart Comfy
 
 ```bash
 cd ComfyUI/custom_nodes
-git clone https://github.com/CreaturePost/creature_sorter workflow_output_sorter
+git clone https://github.com/CreaturePost/creature_sorter
 ```
 
 There are no dependencies beyond ComfyUI itself. The extension registers no nodes. It only adds a prompt handler and a frontend script.
@@ -64,7 +64,7 @@ API clients can skip the frontend and send the name directly:
 
 ## Known risks
 
-- **Silent failure on the server.** ComfyUI only logs exceptions raised by prompt handlers. If the handler fails, the prompt is left unchanged and files land in the default output folder. Check the console for `workflow_output_sorter failed`.
+- **Silent failure on the server.** ComfyUI only logs exceptions raised by prompt handlers. If the handler fails, the prompt is left unchanged and files land in the default output folder. Check the console for `creature_sorter failed`.
 - **Fragile frontend hook.** Wrapping `api.queuePrompt` isn't a documented extension point, and the property that holds the workflow name is unverified (`fullFilename`, `filename` and `path` are tried in that order). If outputs always land in `unsaved/`, check in the browser console that `app.extensionManager.workflow.activeWorkflow` exists and which property holds the saved name on your frontend version.
 
 ## Project layout
