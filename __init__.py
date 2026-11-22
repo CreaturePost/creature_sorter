@@ -4,8 +4,8 @@ Rewrites every Save node's `filename_prefix` at queue time so outputs land in
 
     output/<workflow_name>/<YYMMDD>/<original prefix>
 
-STATUS: the handler logic was run against a stub PromptServer only. It has NOT been
-run inside a live ComfyUI. The frontend half (js/workflow_name.js) is untested.
+STATUS: run end to end on ComfyUI master + frontend 1.59.11 (headless, queued from
+the real UI). Desktop, Comfy Cloud and other frontend versions are untested.
 
 How it works
 - js/workflow_name.js (frontend) writes the open workflow's name into
